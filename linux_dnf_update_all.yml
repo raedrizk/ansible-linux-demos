@@ -1,0 +1,6 @@
+---
+- name: Linux Update All
+  hosts: all
+  gather_facts: true
+  roles:
+  - rsoliman.linux_demos.linux_dnf_update_all

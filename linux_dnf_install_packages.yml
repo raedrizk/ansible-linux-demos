@@ -1,0 +1,6 @@
+---
+- name: Linux Install Packages
+  hosts: all
+  gather_facts: true
+  roles:
+  - rsoliman.linux_demos.linux_dnf_install_packages
