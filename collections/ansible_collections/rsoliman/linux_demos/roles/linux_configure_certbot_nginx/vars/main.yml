@@ -1,0 +1,6 @@
+---
+epel_repo_url: "{{ epel-repo_url_input | default('https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm') }}"
+lets_encrypt_domain_name: "{{ lets_encrypt_domain_name_input | default('foxhound.lab.com') }}"
+lets_encrypt_email_address: "{{ epel-repo_url_input | default('dummy@demo.com') }}"
+cert_path: "{{ epel-repo_url_input | default('/etc/tower/tower.crt') }}"
+key_path: "{{ epel-repo_url_input | default('/etc/tower/tower.key') }}"

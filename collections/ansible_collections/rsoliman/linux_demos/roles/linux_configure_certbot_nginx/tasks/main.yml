@@ -1,0 +1,36 @@
+---
+- name: install EPEL repo
+  ansible.builtin.dnf:
+    name: "{{ epel_repo_url }}"
+    state: present
+
+- name: install certbot and python3-certbot-nginx
+  ansible.builtin.dnf:
+    name: 
+    - certbot
+    - python3-certbot-nginx
+    state: present
+
+- name: Generate Cert and key 
+  ansible.builtin.command: "certbot certonly --nginx --domains {{ lets_encrypt_domain_name }} --agree-tos -m {{ lets_encrypt_email_address }}"
+
+- name: Place cert in correct directrory
+  ansible.builtin.copy:
+    src: /etc/letsencrypt/live/{{ lets_encrypt_domain_name }}/fullchain.pem
+    dest: "{{ cert_path }}"
+    backup: yes
+    force: yes
+    remote_src: yes
+
+- name: Replace key in correct directrory
+  ansible.builtin.copy:
+    src: /etc/letsencrypt/live/{{ lets_encrypt_domain_name }}/privkey.pem
+    dest: "{{ key_path }}"
+    backup: yes
+    force: yes
+    remote_src: yes
+
+- name: Restart service nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted

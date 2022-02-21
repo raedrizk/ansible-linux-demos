@@ -1,0 +1,6 @@
+---
+- name: Linux Configure Certbot for nginx
+  hosts: all
+  gather_facts: false
+  roles:
+  - rsoliman.linux_demos.linux_configure_certbot_nginx
