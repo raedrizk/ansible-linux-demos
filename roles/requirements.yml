@@ -1,0 +1,14 @@
+---
+roles:
+- name: geerlingguy.nodejs
+  source: https://galaxy.ansible.com
+- name: geerlingguy.mysql
+  source: https://galaxy.ansible.com
+- name: geerlingguy.apache
+  source: https://galaxy.ansible.com
+- name: geerlingguy.nginx
+  source: https://galaxy.ansible.com
+- name: geerlingguy.fluentd
+  source: https://galaxy.ansible.com
+- name: geerlingguy.kibana
+  source: https://galaxy.ansible.com
