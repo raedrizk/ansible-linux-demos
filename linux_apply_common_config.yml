@@ -1,0 +1,9 @@
+---
+- name: Linux Apply common config
+  hosts: "{{ target_hosts }}"
+  vars:
+    target_hosts: "{{ new_vm_name if new_vm_name is defined else 'all' | default('all') }}"
+    software_to_install: Nginx
+  become: true
+  roles:
+  - rsoliman.linux_demos.linux_apply_common_config

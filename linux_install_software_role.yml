@@ -1,0 +1,38 @@
+---
+- name: Linux Install Software using a role
+  hosts: "{{ target_hosts }}"
+  gather_facts: true
+  vars:
+    target_hosts: "{{ new_vm_name if new_vm_name is defined else 'all' | default('all') }}"
+    software_to_install: Nginx
+  become: true
+  tasks:
+  - name: Install and configure NodeJS
+    include_role:
+      name: geerlingguy.nodejs
+    when: '"NodeJS" in software_to_install'
+
+  - name: Install and configure MySQL
+    include_role:
+      name: geerlingguy.mysql
+    when: '"MySQL" in software_to_install'
+    
+  - name: Install and configure Apache
+    include_role:
+      name: geerlingguy.apache
+    when: '"Apache" in software_to_install'
+
+  - name: Install and configure Nginx
+    include_role:
+      name: geerlingguy.nginx
+    when: '"Nginx" in software_to_install'
+
+  - name: Install and configure Fluentd
+    include_role:
+      name: geerlingguy.fluentd
+    when: '"Fluentd" in software_to_install'
+
+  - name: Install and configure Kibana
+    include_role:
+      name: geerlingguy.kibana
+    when: '"Kibana" in software_to_install'

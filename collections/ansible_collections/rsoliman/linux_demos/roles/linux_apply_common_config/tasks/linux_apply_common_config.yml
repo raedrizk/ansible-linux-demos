@@ -1,0 +1,15 @@
+---
+- name: Ensure message of the day is configured properly
+  template:
+      src: motd.j2
+      dest: /etc/motd
+
+- name: Ensure that all servers are using the standard resolv.conf
+  copy:
+    src: resolv.conf
+    dest: /etc/resolv.conf
+
+- name: apply nsswitch.conf 
+  copy:
+    src: nsswitch.conf
+    dest: /etc/nsswitch.conf
