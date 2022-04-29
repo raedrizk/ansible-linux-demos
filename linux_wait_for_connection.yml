@@ -1,0 +1,6 @@
+---
+- name: Wait for an ssh connection
+  hosts: all
+  gather_facts: false
+  roles:
+  - rsoliman.linux_demos.linux_wait_for_connection

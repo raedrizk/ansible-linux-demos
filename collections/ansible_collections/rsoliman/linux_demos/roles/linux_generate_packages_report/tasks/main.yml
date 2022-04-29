@@ -1,0 +1,17 @@
+---
+- name: Get a list of all installed packages
+  ansible.builtin.yum:
+    list: installed
+  become: true
+  register: installed_result
+
+- name: debug
+  ansible.builtin.debug:
+    var: installed_result.results
+
+- name: Use template to Generate CSV File with Available Updates
+  template:
+    src: index1.html.j2
+    dest: /home/Documents/packagesreport/index.html
+  delegate_to: localhost
+  run_once: True

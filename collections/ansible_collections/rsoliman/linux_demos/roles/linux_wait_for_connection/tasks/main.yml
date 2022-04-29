@@ -1,0 +1,3 @@
+---
+- name: wait for a connection
+  wait_for_connection:
