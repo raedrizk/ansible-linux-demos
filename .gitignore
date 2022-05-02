@@ -1,3 +1,5 @@
 ansible-navigator.yml
 localhost_inventory
 test_inventory
+logs/*
+artifacts/*
