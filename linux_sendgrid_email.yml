@@ -1,5 +1,0 @@
----
-- name: Linux Configure Certbot for nginx
-  hosts: all
-  roles:
-  - rsoliman.linux_demos.linux_sendgrid_email

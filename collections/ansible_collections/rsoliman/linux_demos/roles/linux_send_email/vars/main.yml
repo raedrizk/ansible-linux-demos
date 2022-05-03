@@ -1,0 +1,9 @@
+---
+smtp_host: "{{ smtp_host_input | default('host.smtp.com')}}"
+smtp_port: "{{ smtp_port_input | default('587')}}"
+smtp_username: "{{ smtp_host_input | default('user@admin.com')}}"
+smtp_password: "{{ smtp_host_input | default('token')}}"
+to_address: "{{ to_address_input | default('admin@foxhound.unit') }}"
+from_address: "{{ from_address_input | default('BigBoss@foxhound.unit') }}"
+email_subject: "{{ email_subject_input | default('Ansible Update Report') }}"
+email_body_template: "{{ email_body_template_input | default('publicip.html.j2') }}"

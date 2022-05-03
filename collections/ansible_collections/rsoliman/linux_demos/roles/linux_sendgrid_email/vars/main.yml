@@ -1,7 +1,0 @@
----
-sendgrid_api_key: "{{ sendgrid_api_key_choice | default('ABCDEFGHIJKLMNOPQRSTUVWXYZ') }}"
-sendgrid_from_address: "{{ sendgrid_from_address_choice | default('ansible@foxhound.unit') }}"
-sendgrid_to_address: "{{ sendgrid_to_address_choice | default('ansible@foxhound.unit') }}"
-sendgrid_email_subject: "{{ sendgrid_email_subject_choice | default('Ansible Update Report') }}"
-sendgrid_email_attachement: "{{ sendgrid_email_attachement_choice | default(omit) }}"
-email_body_template: "{{ email_body_template_choice | default('default.html.j2') }}"
