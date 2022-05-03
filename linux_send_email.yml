@@ -2,5 +2,4 @@
 - name: Sending an email
   hosts: all
   roles:
-  - rsoliman.linux_demos.linux_get_publicip
   - rsoliman.linux_demos.linux_send_email
