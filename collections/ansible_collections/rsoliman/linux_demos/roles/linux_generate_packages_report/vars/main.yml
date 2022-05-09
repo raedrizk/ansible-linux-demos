@@ -9,7 +9,7 @@ packages:
 - name: bash
   version: 4.4.20
 - name: chrony
-  version: 3.5
+  version: 3.3
 - name: curl
   version: 7.65.1
 - name: grep
