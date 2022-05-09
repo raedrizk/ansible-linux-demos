@@ -76,7 +76,7 @@
                                     <td style="text-align: center; vertical-align: middle;"> <img src="noncompliant.png" title="Non Compliant" alt="Non Compliant" width="20" height="20" /> </td>
                                 {% endif %}
                                  </tr>
-                            {% else %}
+                            {% elif show_untracked %}
                                     
                                     <tr class="child-{{ host | replace(".", "") }}" style="display: table-row;">
                                     <td></td>
