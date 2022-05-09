@@ -20,3 +20,8 @@
   template:
     src: index.html.j2
     dest: /var/www/html/index.html
+
+- name: Use template to Generate report of packages and their compliance
+  copy:
+    src: report/
+    dest: /var/www/html/

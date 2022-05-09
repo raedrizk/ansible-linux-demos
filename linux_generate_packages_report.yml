@@ -2,5 +2,6 @@
 - name: Generate a report with package information and compliance info
   hosts: all
   gather_facts: true
+  become: true
   roles:
   - rsoliman.linux_demos.linux_generate_packages_report
