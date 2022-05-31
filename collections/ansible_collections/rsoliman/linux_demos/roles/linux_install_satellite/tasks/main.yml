@@ -50,3 +50,4 @@
   ansible.builtin.command: satellite-installer --scenario satellite --foreman-initial-organization "{{ satellite_initial_organization }}" --foreman-initial-location "{{ satellite_initial_location }}" --foreman-initial-admin-username {{ satellite_admin_username }} --foreman-initial-admin-password {{ satellite_admin_password }}
   async: 3600
   poll: 15
+  no_log: true
