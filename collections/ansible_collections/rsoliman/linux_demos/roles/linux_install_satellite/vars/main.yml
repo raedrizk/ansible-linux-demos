@@ -43,5 +43,5 @@ satellite_ports:
 
 satellite_initial_organization: "{{ satellite_initial_organization_choice | default('FOXHOUND') }}"
 satellite_initial_location: "{{ satellite_initial_location_choice | default('Shadow Moses') }}" 
-satellite_admin_username: "{{ rh_password | default('admin') }}"  
-satellite_admin_password: "{{ rh_password | default('password') }}" 
+satellite_admin_username: "{{ satellite_admin_username_choice | default('admin') }}"  
+satellite_admin_password: "{{ satellite_admin_passwor_choice | default('satellitepassword') }}"
