@@ -1,5 +1,6 @@
 ---
 - name: Install Satellite
   hosts: all
+  become: true
   roles:
   - rsoliman.linux_demos.linux_install_satellite
