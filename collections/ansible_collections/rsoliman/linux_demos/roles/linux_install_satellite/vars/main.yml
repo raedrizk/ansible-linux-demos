@@ -1,0 +1,47 @@
+---
+# vars file for linux-install-code-server
+satellite_pool_id: "{{ satellite_pool_id_choice | default('sasasasasasasasasasasasasasas') }}"
+subscription_manager_usrename: "{{ rh_username | default('rhuser') }}"
+subscription_manager_password: "{{ rh_password | default('password') }}"
+
+satellite_version: "{{ satellite_version_choice | default('6.10') }}"
+
+satellite_repos:
+  - rhel-7-server-rpms
+  - rhel-7-server-satellite-{{ satellite_version }}-rpms
+  - rhel-7-server-satellite-maintenance-6-rpms
+  - rhel-server-rhscl-7-rpms
+  - rhel-7-server-ansible-2.9-rpms
+
+satellite_packages:
+  - satellite
+  - sos
+
+satellite_ports:
+  - port: 80
+    protocol: tcp
+  - port: 443
+    protocol: tcp
+  - port: 5647
+    protocol: tcp
+  - port: 8000
+    protocol: tcp
+  - port: 8140
+    protocol: tcp
+  - port: 9090
+    protocol: tcp
+  - port: 53
+    protocol: tcp
+  - port: 53
+    protocol: udp
+  - port: 67
+    protocol: udp
+  - port: 59
+    protocol: udp
+  - port: 5000
+    protocol: tcp
+
+satellite_initial_organization: "{{ satellite_initial_organization_choice | default('FOXHOUND') }}"
+satellite_initial_location: "{{ satellite_initial_location_choice | default('Shadow Moses') }}" 
+satellite_admin_username: "{{ rh_password | default('admin') }}"  
+satellite_admin_password: "{{ rh_password | default('password') }}" 

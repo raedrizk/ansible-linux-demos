@@ -1,0 +1,52 @@
+---
+- name: Register as user {{ subscription_manager_usrename }} and subscribe to Satellite Infratsructure Pool with ID {{ satellite_pool_id }}
+  community.general.redhat_subscription:
+    state: present
+    username: "{{ subscription_manager_usrename }}"
+    password: "{{ subscription_manager_password }}"
+    pool_ids: "{{ satellite_pool_id }}"
+
+- name: Disable all RHSM repositories
+  community.general.rhsm_repository:
+    name: '*'
+    state: disabled
+
+- name: Enable {{ item }} repo
+  community.general.rhsm_repository:
+    name: "{{ item }}"
+    state: enabled
+  loop: "{{ satellite_repos }}"
+
+- name: install firewalld
+  ansible.builtin.dnf:
+    name: firewalld
+    state: latest
+
+- name: Start service firewalld
+  ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: upgrade all packages
+  ansible.builtin.dnf:
+    name: '*'
+    state: latest
+
+- name: Install Satellite and sos
+  ansible.builtin.dnf:
+    name: "{{ satellite_packages ))"
+    state: latest
+
+- name: Opening port {{ item.port}}/{{ item.protocol }} required by Satellite
+  ansible.posix.firewalld:
+     port: "{{ item.port}}/{{ item.protocol }}"
+     permanent: yes
+     immediate: yes
+     state: enabled
+  loop: "{{ satellite_ports }}"
+
+- name: Configure Satellite
+  ansible.builtin.command: satellite-installer --scenario satellite --foreman-initial-organization "{{ satellite_initial_organization }}" --foreman-initial-location "{{ satellite_initial_location }}" --foreman-initial-admin-username {{ satellite_admin_username }} --foreman-initial-admin-password {{ satellite_admin_password }}
+  async: 3600
+  poll: 15
