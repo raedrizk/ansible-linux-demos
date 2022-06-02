@@ -1,6 +1,7 @@
 ---
 - name: Linux Register RHEL host to Satellite
   hosts: "{{ target_hosts }}"
+  gather_facts: false
   vars:
     target_hosts: "{{ new_vm_name if new_vm_name is defined else 'all' | default('all') }}"
   become: true
