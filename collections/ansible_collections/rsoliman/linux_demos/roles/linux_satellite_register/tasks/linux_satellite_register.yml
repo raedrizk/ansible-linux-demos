@@ -25,7 +25,7 @@
 
 - name: Enable satellite tools repo provided by the content view
   community.general.rhsm_repository:
-    name: rhel-7-server-satellite-tools-6.7-rpms
+    name: "{{ sat_contentview_tools_repo }}"
 
 - name: install Katello Host Tools
   ansible.builtin.dnf:
