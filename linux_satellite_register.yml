@@ -1,0 +1,8 @@
+---
+- name: Linux Register RHEL host to Satellite
+  hosts: "{{ target_hosts }}"
+  vars:
+    target_hosts: "{{ new_vm_name if new_vm_name is defined else 'all' | default('all') }}"
+  become: true
+  roles:
+  - rsoliman.linux_demos.linux_satellite_register

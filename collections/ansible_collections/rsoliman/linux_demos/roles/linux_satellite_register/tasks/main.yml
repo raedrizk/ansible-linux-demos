@@ -1,0 +1,4 @@
+---
+# tasks file for linux-satellite-register
+- name: Register host to satellite server {{ sat_server_hostname }}
+  include_tasks: linux_satellite_register.yml

@@ -1,0 +1,34 @@
+---
+- name: edit hosts file to resolve the sat ec2_server 
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      {{ sat_server_ip }} {{ sat_server_hostname }}
+
+- name: install the proper certificates for client-satellite server communication
+  yum:
+    name: http://{{ sat_server_hostname }}/pub/katello-ca-consumer-latest.noarch.rpm
+    state: present
+
+- name: clear subscription and identity data
+  command: subscription-manager clean
+  become: true
+
+- name: Register host to {{ sat_server_hostname }} using Activation Key {{ sat_activation_key }} and Org {{ sat_org_id }}
+  redhat_subscription:
+    state: present
+    server_insecure: 1
+    activationkey: "{{ sat_activation_key }}"
+    org_id: "{{ sat_org_id }}"
+    force_register: true
+
+- name: Enable satellite tools repo provided by the content view
+  rhsm_repository:
+    name: rhel-7-server-satellite-tools-6.7-rpms
+
+- name: install Katello Host Tools
+  yum:
+    name: katello-host-tools
+    state: present
+
+    
