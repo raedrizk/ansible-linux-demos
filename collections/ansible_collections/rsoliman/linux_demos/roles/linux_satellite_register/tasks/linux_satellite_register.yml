@@ -5,15 +5,15 @@
     block: |
       {{ sat_server_ip }} {{ sat_server_hostname }}
 
+- name: clear subscription and identity data
+  ansible.builtin.command: subscription-manager clean
+  become: true
+
 - name: install the proper certificates for client-satellite server communication
   ansible.builtin.dnf:
     name: http://{{ sat_server_hostname }}/pub/katello-ca-consumer-latest.noarch.rpm
     state: present
     disable_gpg_check: yes
-
-- name: clear subscription and identity data
-  ansible.builtin.command: subscription-manager clean
-  become: true
 
 - name: Register host to {{ sat_server_hostname }} using Activation Key {{ sat_activation_key }} and Org {{ sat_org_id }}
   community.general.redhat_subscription:
@@ -22,6 +22,14 @@
     activationkey: "{{ sat_activation_key }}"
     org_id: "{{ sat_org_id }}"
     force_register: true
+
+- name: Make sure Repository management is enabled in rhsm.conf 
+  ansible.builtin.lineinfile:
+    path: /etc/rhsm/rhsm.conf
+    regexp: '^manage_repos'
+    line: manage_repos = 1
+
+
 
 - name: Enable satellite tools repo provided by the content view
   community.general.rhsm_repository:
