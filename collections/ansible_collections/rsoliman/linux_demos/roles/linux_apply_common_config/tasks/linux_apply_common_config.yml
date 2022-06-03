@@ -1,15 +1,20 @@
 ---
+- name: Set a hostname specifying strategy
+  ansible.builtin.hostname:
+    name: "{{ inventory_hostname }}"
+    use: systemd
+
 - name: Ensure message of the day is configured properly
-  template:
+  ansible.builtin.template:
       src: motd.j2
       dest: /etc/motd
 
 - name: Ensure that all servers are using the standard resolv.conf
-  copy:
+  ansible.builtin.copy:
     src: resolv.conf
     dest: /etc/resolv.conf
 
 - name: apply nsswitch.conf 
-  copy:
+  ansible.builtin.copy:
     src: nsswitch.conf
     dest: /etc/nsswitch.conf
