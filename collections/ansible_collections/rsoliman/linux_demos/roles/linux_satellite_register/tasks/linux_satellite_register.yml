@@ -5,6 +5,12 @@
     block: |
       {{ sat_server_ip }} {{ sat_server_hostname }}
 
+- name: make sure subscription-manager is present
+  ansible.builtin.dnf:
+    name: subscription-manager
+    state: present
+  ignore_errors: yes
+
 - name: clear subscription and identity data
   ansible.builtin.command: subscription-manager clean
   become: true
