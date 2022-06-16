@@ -1,9 +1,9 @@
 ---
-name: test
-hosts: all
-gather_facts: true
-tasks:
-- name: print who I am
-  debug:
-    var: ansible_hostname
-  delegate_to: localhost
+- name: test
+  hosts: all
+  gather_facts: true
+  tasks:
+  - name: print who I am
+    debug:
+      var: ansible_hostname
+    delegate_to: localhost
