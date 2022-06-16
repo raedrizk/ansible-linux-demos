@@ -6,4 +6,3 @@
   - name: print who I am
     debug:
       var: ansible_hostname
-    delegate_to: localhost
