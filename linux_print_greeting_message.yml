@@ -3,9 +3,9 @@
   hosts: all
   gather_facts: false
   vars:
-    name: "{{ name_input | default('Ansible User') }}"
-    message: "{{ message_input | default('Have a great day!') }}"
+    greeting_name: "{{ greeting_name_input | default('Ansible User') }}"
+    greeting_message: "{{ greeting_message_input | default('Have a great day!') }}"
   tasks:
   - name: Print Greeting Message
     ansible.builtin.debug:
-      msg: "Hello {{ name }}, {{ message }}"
+      msg: "Hello {{ greeting_name }}, {{ greeting_message }}"
