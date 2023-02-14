@@ -10,8 +10,8 @@
 
   - name: template exec enc
     ansible.builtin.template:
-      src: temp_execution-environment.yml.j2
-      dest: /ee-build/execution-environment.yml
+      src: temp_execution-environmnet.yml.j2
+      dest: /ee-build/execution-environmnet.yml
 
   - name: template reqs enc
     ansible.builtin.template:
