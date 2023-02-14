@@ -27,6 +27,3 @@
     ansible.builtin.command: ansible-builder build -t dummy-ee:latest
     args:
       chdir: ee-build/
-
-  - name: checj
-    ansible.buildin.command: podman images
