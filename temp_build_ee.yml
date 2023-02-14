@@ -24,6 +24,4 @@
       dest: /ee-build/requirements.txt
 
   - name: build image
-    ansible.builtin.command: ansible-builder build -t dummy-ee:latest
-    args:
-      chdir: ee-build/
+    ansible.builtin.command: ansible-builder build -f /ee-build/execution-environmnet.yml -t dummy-ee:latest
