@@ -3,5 +3,5 @@
 sat_server_hostname: "{{ sat_server_hostname_choice | default('satellite.demo.org') }}"
 sat_server_ip: "{{ sat_server_hostname_choice | default('satellite.demo.org') }}"
 sat_activation_key: "{{ sat_activation_key_choice | default('ansible_default') }}"
-sat_org_id: "{{ sat_org_id_choice | default('FOXHOUND') }}"
-sat_contentview_tools_repo: "{{ sat_contentview_tools_repo_choice | default('satellite-tools-6.10-for-rhel-8-x86_64-rpms') }}"
+sat_org_id: "{{ sat_org_id_choice | default('Foxhound') }}"
+sat_contentview_tools_repo: "{{ sat_contentview_tools_repo_choice | default('Red_Hat_Satellite_Client_6_for_RHEL_8_x86_64_RPMs') }}"
