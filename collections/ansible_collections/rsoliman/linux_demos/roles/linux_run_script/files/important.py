@@ -1,1 +1,0 @@
-print('Ansible is awesome')
