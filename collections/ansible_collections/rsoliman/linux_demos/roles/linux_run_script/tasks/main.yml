@@ -1,0 +1,5 @@
+---
+- name: Run the {{ script_name }} script and create a file when run
+  ansible.builtin.script: "{{ script_name }} {{ script_args }}"
+  args:
+    creates: /tmp/{{ script_name }}.run

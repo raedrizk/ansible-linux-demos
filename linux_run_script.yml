@@ -1,0 +1,6 @@
+---
+- name: Linux Run Script
+  hosts: all
+  gather_facts: false
+  roles:
+  - rsoliman.linux_demos.linux_run_script
