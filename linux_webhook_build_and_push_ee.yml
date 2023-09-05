@@ -34,13 +34,13 @@
 
     - name: Git clone and checkout the repo
       ansible.builtin.git:
-        repo: "{{ tower_webhook_payload.git_url }}"
+        repo: "{{ tower_webhook_payload.repository.git_url }}"
         dest: /var/ee-builds/{{ ee_tag }}
         version: "{{ ee_name }}"
 
     - name: Git checkout the repo
       ansible.builtin.git:
-        repo: "{{ tower_webhook_payload.git_url }}"
+        repo: "{{ tower_webhook_payload.repository.git_url }}"
         dest: /var/ee-builds/{{ ee_tag }}
         version: "{{ ee_name }}"        
 
