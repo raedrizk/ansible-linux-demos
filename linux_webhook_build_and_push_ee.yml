@@ -65,7 +65,7 @@
 
     - name: Push EE to Registry
       containers.podman.podman_image:
-        name: localhost/{{ ee_name }}:{{ ee_tag }}
+        name: "{{ ee_name }}:{{ ee_tag }}"
         push: true
         push_args:
           dest: "{{ controller_registry_address }}/{{ ee_name }}:{{ ee_tag }}"
