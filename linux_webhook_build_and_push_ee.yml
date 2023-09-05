@@ -28,15 +28,25 @@
       ansible.builtin.debug:
         msg: using directory under /var/ee-builds/{{ ee_tag }}
 
-    - name: Debug branch name 
-      ansible.builtin.debug:
-        msg: "{{ tower_webhook_payload.ref.split('/')[-1] }}"
+    - name: Extracting the branch name from the webhook to be used as the ee image name
+      ansible.builtin.set_fact:
+        ee_name: "{{ tower_webhook_payload.ref.split('/')[-1] }}"
 
-  # - name: Git checkout
-  #   ansible.builtin.git:
-  #     repo: 'https://foosball.example.org/path/to/repo.git'
-  #     dest: /srv/checkout
-  #     version: release-0.22
+    - name: Git clone and checkout the repo
+      ansible.builtin.git:
+        repo: "{{ tower_webhook_payload.git_url }}"
+        dest: /var/ee-builds/{{ ee_tag }}
+        version: "{{ ee_name }}"
+
+    - name: Git checkout the repo
+      ansible.builtin.git:
+        repo: "{{ tower_webhook_payload.git_url }}"
+        dest: /var/ee-builds/{{ ee_tag }}
+        version: "{{ ee_name }}"        
+
+    - name: Build the EE
+      ansible.builtin.command:
+        ansible-builder build -t {{ ee_name }}:{{ ee_tag }}
 
   # - name: Login to registry
   #   containers.podman.podman_login:
