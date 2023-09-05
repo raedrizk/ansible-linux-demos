@@ -7,7 +7,9 @@
   tasks:
     - name: Make sure that podman is installed
       ansible.builtin.dnf:
-        name: podman
+        name:
+          - podman
+          - git
         state: present
 
     - name: Make sure that builder 3 is installed
