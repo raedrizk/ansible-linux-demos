@@ -30,7 +30,7 @@
 
     - name: Debug branch name 
       ansible.builtin.debug:
-        msg: "{{ tower_webhook_payload.ref.split('.')[-1] }}"
+        msg: "{{ tower_webhook_payload.ref.split('/')[-1] }}"
 
   # - name: Git checkout
   #   ansible.builtin.git:
