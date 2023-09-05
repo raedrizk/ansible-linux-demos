@@ -41,6 +41,8 @@
     - name: Build the EE
       ansible.builtin.command:
         ansible-builder build -t {{ ee_name }}:{{ ee_tag }}
+      args:
+        chdir: /var/ee-builds/{{ ee_tag }}
 
   # - name: Login to registry
   #   containers.podman.podman_login:
