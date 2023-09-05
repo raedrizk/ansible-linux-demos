@@ -1,0 +1,50 @@
+---
+- name: Build and Push EE to registry
+  hosts: all
+  gather_facts: false
+  vars:
+    registry: adjsh.com
+  tasks:
+    - name: Make sure that podman is installed
+      ansible.builtin.dnf:
+        name: podman
+        state: present
+
+    - name: Make sure that builder 3 is installed
+      ansible.builtin.pip:
+        name: ansible-builder>=3.0.0
+        state: present
+
+    - name: Set Directory Name with EE Tag
+      ansible.builtin.set_fact:
+        ee_tag: lookup('community.general.random_string', length=12)
+
+    - name: Create Directory for EE-Build
+      ansible.builtin.file:
+        path: /var/ee-builds/{{ ee_tag }}
+        state: directory
+
+    - name: Print the working directory name
+      ansible.builtin.debug:
+        msg: using directory under /var/ee-builds/{{ ee_tag }}
+
+  # - name: Git checkout
+  #   ansible.builtin.git:
+  #     repo: 'https://foosball.example.org/path/to/repo.git'
+  #     dest: /srv/checkout
+  #     version: release-0.22
+
+  # - name: Login to registry
+  #   containers.podman.podman_login:
+  #     username: "{{ controller_registry_username }}"
+  #     password: "{{ controller_registry_password }}"
+  #     registry: "{{ controller_registry_address }}"
+
+  # - name: pull down the base images
+  #   containers.podman.podman_image:
+  #     username: "{{ controller_registry_username }}"
+  #     password: "{{ controller_registry_password }}"
+  #     name: "{{ base_image }}"
+  #     pull: true
+  #     state: present
+  #     validate_certs: false
