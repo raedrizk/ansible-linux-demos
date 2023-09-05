@@ -17,7 +17,7 @@
 
     - name: Set Directory Name with EE Tag
       ansible.builtin.set_fact:
-        ee_tag: '{{ lookup("community.general.random_string", length=12) }}'
+        ee_tag: '{{ lookup("community.general.random_string", length=12, upper=false, special=false) }}'
 
     - name: Create Directory for EE-Build
       ansible.builtin.file:
