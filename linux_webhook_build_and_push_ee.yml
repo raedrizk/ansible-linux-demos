@@ -36,7 +36,7 @@
 
     - name: Git checkout the repo
       ansible.builtin.command:
-        git clone -b {{ ee_name }} {{ tower_webhook_payload.repository.git_url }} /var/ee-builds/{{ ee_tag }}
+        git clone -b {{ ee_name }} {{ tower_webhook_payload.repository.clone_url }} /var/ee-builds/{{ ee_tag }}
 
     - name: Build the EE
       ansible.builtin.command:
