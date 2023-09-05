@@ -43,12 +43,16 @@
         ansible-builder build -t {{ ee_name }}:{{ ee_tag }}
       args:
         chdir: /var/ee-builds/{{ ee_tag }}
+      register: build_output
+      async: 3600
+      poll: 10
 
-  # - name: Login to registry
-  #   containers.podman.podman_login:
-  #     username: "{{ controller_registry_username }}"
-  #     password: "{{ controller_registry_password }}"
-  #     registry: "{{ controller_registry_address }}"
+    - name: Login to registry
+      containers.podman.podman_login:
+        username: "{{ controller_registry_username }}"
+        password: "{{ controller_registry_password }}"
+        registry: "{{ controller_registry_address }}"
+        tlsverify: false
 
   # - name: pull down the base images
   #   containers.podman.podman_image:
@@ -58,5 +62,13 @@
   #     pull: true
   #     state: present
   #     validate_certs: false
+
+    - name: Push EE to Registry
+      containers.podman.podman_image:
+        name: localhost/{{ ee_name }}:{{ ee_tag }}
+        push: true
+        push_args:
+          dest: "{{ controller_registry_address }}/{{ ee_name }}:{{ ee_tag }}"
+        validate_certs: false
 
 
