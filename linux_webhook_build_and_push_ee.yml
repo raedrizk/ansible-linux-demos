@@ -28,6 +28,10 @@
       ansible.builtin.debug:
         msg: using directory under /var/ee-builds/{{ ee_tag }}
 
+    - name: Debug branch name 
+      ansible.builtin.debug:
+        msg: "{{ tower_webhook_payload.ref.split('.')[-1] }}"
+
   # - name: Git checkout
   #   ansible.builtin.git:
   #     repo: 'https://foosball.example.org/path/to/repo.git'
@@ -48,3 +52,5 @@
   #     pull: true
   #     state: present
   #     validate_certs: false
+
+
