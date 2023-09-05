@@ -34,14 +34,6 @@
       ansible.builtin.set_fact:
         ee_name: "{{ tower_webhook_payload.ref.split('/')[-1] }}"
 
-    - name: Git clone and checkout the repo
-      ansible.builtin.git:
-        repo: "{{ tower_webhook_payload.repository.git_url }}"
-        dest: /var/ee-builds/{{ ee_tag }}
-        version: "{{ ee_name }}"
-      environment:
-        GIT_TERMINAL_PROMPT: 0
-
     - name: Git checkout the repo
       ansible.builtin.command:
         git clone -b {{ ee_name }} {{ tower_webhook_payload.repository.git_url }} /var/ee-builds/{{ ee_tag }}
