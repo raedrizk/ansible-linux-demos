@@ -39,6 +39,8 @@
         repo: "{{ tower_webhook_payload.repository.git_url }}"
         dest: /var/ee-builds/{{ ee_tag }}
         version: "{{ ee_name }}"
+      environment:
+        GIT_TERMINAL_PROMPT: 0
 
     - name: Git checkout the repo
       ansible.builtin.git:
