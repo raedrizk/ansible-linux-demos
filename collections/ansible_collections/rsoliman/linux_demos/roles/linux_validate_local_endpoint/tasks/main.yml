@@ -1,0 +1,10 @@
+---
+- name: Ensure that URL is reachable from this host
+  ansible.builtin.uri:
+    url: "http://{{ ansible_host }}:{{ port }}{{ endpoint }}"
+    follow_redirects: none
+    method: GET
+  register: _result
+  until: _result.status == 200
+  retries: 720
+  delay: 5

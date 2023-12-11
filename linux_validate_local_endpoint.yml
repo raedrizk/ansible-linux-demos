@@ -1,0 +1,6 @@
+---
+- name: Validate that an endpoint running on the host is up and responsive 
+  hosts: all
+  gather_facts: false
+  roles:
+  - rsoliman.linux_validate_local_endpoint
