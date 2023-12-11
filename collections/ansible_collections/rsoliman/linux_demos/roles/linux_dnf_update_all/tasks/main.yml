@@ -13,7 +13,7 @@
   ansible.builtin.command: needs-restarting -r
   register: reboot_required
   failed_when: false
-  changed_when: "{{ 'Reboot is required' in reboot_required.stdout or (force_reboot is defined and force_reboot) }}"
+  changed_when: 'Reboot is required' in reboot_required.stdout or (force_reboot is defined and force_reboot)
   notify:
   - reboot_server
 
