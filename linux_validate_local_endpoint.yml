@@ -3,4 +3,4 @@
   hosts: all
   gather_facts: false
   roles:
-  - rsoliman.linux_validate_local_endpoint
+  - rsoliman.linux_demos.linux_validate_local_endpoint
