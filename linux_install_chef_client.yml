@@ -1,0 +1,18 @@
+---
+- name: Install chef client
+  hosts: all
+  vars_files:
+   - files/chef.yml
+  tasks:
+    - name: Fetch installer
+      ansible.builtin.get_url:
+        url: "http://www.getchef.com/chef/download?p={{ chef_client_package['platform'] }}&pv={{ chef_client_package['platform_version'] }}&m={{ chef_client_package['arch'] }}&v={{ chef_client_version }}&prerelease=false"
+        dest: "{{ chef_client_package['installer_dest'] }}"
+      register: register_installer_url
+
+
+    - name: Install yum package
+      ansible.builtin.dnf: 
+        name: "{{ chef_client_package['installer_dest'] }}"
+      register: register_yum
+      when: chef_client_package['installer_dest'] is defined

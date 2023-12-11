@@ -1,0 +1,6 @@
+---
+- name: Manage Liux Service
+  hosts: all
+  become: true
+  roles:
+  - rsoliman.linux_demos.linux_manage_service
