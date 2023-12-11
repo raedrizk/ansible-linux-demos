@@ -1,6 +1,7 @@
 ---
 - name: Manage Liux Service
   hosts: all
+  gather_facts: false
   become: true
   roles:
   - rsoliman.linux_demos.linux_manage_service
