@@ -1,7 +1,7 @@
 ---
 - name: Ensure that URL is reachable from this host
   ansible.builtin.uri:
-    url: "http://{{ ansible_host }}:{{ port }}{{ endpoint }}"
+    url: "http://{{ ansible_host }}:{{ endpoint_port }}{{ endpoint }}"
     follow_redirects: none
     method: GET
   register: _result
