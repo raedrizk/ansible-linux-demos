@@ -3,3 +3,9 @@
   ansible.builtin.package:
     name: "*"
     state: latest
+
+- name: Reboot when forced only
+  ansible.builtin.command: echo "Reboot if needed"
+  changed_when: "{{ force_reboot is defined and force_reboot }}"
+  notify:
+  - reboot_server
