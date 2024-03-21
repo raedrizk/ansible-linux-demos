@@ -1,0 +1,9 @@
+---
+- include_tasks: dnf_update.yml
+  when: ansible_os_family in ['RedHat', 'Rocky', 'AlmaLinux']
+
+- include_tasks: apt_update.yml
+  when: ansible_distribution in ['Ubuntu', 'Debian']
+
+- include_tasks: package_update.yml
+  when: ansible_os_family not in ['RedHat', 'Rocky', 'AlmaLinux', 'Ubuntu', 'Debian']
