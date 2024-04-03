@@ -1,5 +1,5 @@
 ---
-- name: Install NodeJS
+- name: Install NodeJS and git
   ansible.builtin.dnf:
     name: 
     - nodejs
@@ -29,5 +29,5 @@
 - name: start and enable the {{ application_service_name }} service 
   ansible.builtin.service:
     name: "{{ application_service_name }}"
-    state: enabled
+    state: started
     enabled: true
