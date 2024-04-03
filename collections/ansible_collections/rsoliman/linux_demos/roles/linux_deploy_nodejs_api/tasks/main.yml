@@ -31,3 +31,7 @@
     name: "{{ application_service_name }}"
     state: started
     enabled: true
+
+- name: Check that you can connect to the end point and get status 200
+  ansible.builtin.uri:
+    url: http://localhost:{{ api_port }}{{ application_test_endpoint }}
