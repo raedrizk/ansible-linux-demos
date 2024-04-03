@@ -1,0 +1,11 @@
+[Unit]
+Description=Simple API in NodeJS
+After=network.target
+[Service]
+ExecStart=/usr/bin/node {{ application_directory }}/app.js
+WorkingDirectory={{ application_directory }}
+Restart=always
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+[Install]
+WantedBy=multi-user.target

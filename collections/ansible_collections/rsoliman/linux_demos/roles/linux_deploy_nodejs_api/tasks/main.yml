@@ -1,0 +1,33 @@
+---
+- name: Install NodeJS
+  ansible.builtin.dnf:
+    name: 
+    - nodejs
+    - git
+    state: present
+
+- name: Create a directory for the application if it does not exist
+  ansible.builtin.file:
+    path: "{{ application_directory }}"
+    state: directory
+    mode: '0755'
+
+- name: Clone the node repo into {{ application_directory }}
+  ansible.builtin.git:
+    repo: "{{ application_git_repo }}"
+    dest: "{{ application_directory }}"
+
+- name: Install packages based on package.json.
+  community.general.npm:
+    path: "{{ application_directory }}"
+
+- name: deploy service file 
+  ansible.builtin.template:
+    src: "{{ application_service_name }}.service.j2"
+    dest: /etc/systemd/system/"{{ application_service_name }}".service
+
+- name: start and enable the {{ application_service_name }} service 
+  ansible.builtin.service:
+    name: "{{ application_service_name }}"
+    state: enabled
+    enabled: true

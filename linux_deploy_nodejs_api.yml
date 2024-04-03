@@ -1,0 +1,6 @@
+---
+- name: Install NodeJS and deploy a simple API
+  hosts: all
+  gather_facts: true
+  roles:
+  - rsoliman.linux_demos.linux_deploy_nodejs_api

@@ -1,0 +1,5 @@
+---
+api_port:  "{{ input_api_port | default(3000)}}"
+application_git_repo: https://github.com/raedrizk/nodejs-simpleapi.git
+application_directory: /var/app/nodeapi
+application_service_name: node-api
