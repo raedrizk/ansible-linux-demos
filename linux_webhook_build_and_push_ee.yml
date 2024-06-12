@@ -14,7 +14,7 @@
 
     - name: Make sure that builder 3 is installed
       ansible.builtin.pip:
-        name: ansible-builder>=3.0.0
+        name: ansible-builder
         state: present
 
     - name: Set Directory Name with EE Tag
