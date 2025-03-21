@@ -4,3 +4,7 @@
   tasks:
   - name: print env
     ansible.builtin.command: printenv
+
+  - name: Before 2.13, how to set default value if the variable is not defined
+    ansible.builtin.debug:
+      msg: "Hello {{ lookup('ansible.builtin.env', 'K8S_AUTH_HOST') }}"
