@@ -1,0 +1,6 @@
+---
+- name: Print env vars - TESTING ONLY
+  hosts: all
+  tasks:
+  - name: print env
+    cmd: printenv

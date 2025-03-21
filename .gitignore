@@ -4,3 +4,4 @@ test_inventory
 logs/*
 artifacts/*
 .vscode
+.lock
