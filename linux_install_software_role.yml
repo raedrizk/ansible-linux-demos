@@ -24,7 +24,7 @@
 
   - name: Install and configure Nginx
     include_role:
-      name: geerlingguy.nginx
+      name: nginx.nginx
     when: '"Nginx" in software_to_install'
 
   - name: Install and configure Fluentd

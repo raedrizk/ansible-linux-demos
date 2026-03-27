@@ -12,3 +12,6 @@ roles:
   source: https://galaxy.ansible.com
 - name: geerlingguy.kibana
   source: https://galaxy.ansible.com
+- name: nginx.nginx
+  src: https://github.com/nginx/ansible-role-nginx.git 
+  scm: git
