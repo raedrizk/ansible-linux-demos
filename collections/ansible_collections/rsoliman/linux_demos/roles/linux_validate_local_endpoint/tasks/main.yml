@@ -4,6 +4,7 @@
     url: "{{ protocol }}://{{ ansible_host }}:{{ endpoint_port }}/{{ endpoint }}"
     follow_redirects: none
     method: GET
+    validate_certs: "{{ validate_certs | default(false) }}"
   register: _result
   until: _result.status == 200
   retries: 720
